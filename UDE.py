@@ -38,10 +38,6 @@ def closeude():
 
 # UPDATE CONTEXT FUNCTION #
 def ac(t, r):
-    try:
-        con = json.load(f)
-    except (FileNotFoundError, json.JSONDecodeError):
-        con = []
     with open(gcontextjson, 'r') as f:
         con = json.load(f)
     e = {'role': r, 'parts': [{'text': t}]}
@@ -165,12 +161,12 @@ def updatecfg(relod):
     
     apikey = config['UDG']['api_key']
     sysin = config['UDG']['system_instructions']
-    temp = config['UDG']['temperature']
-    topp = config['UDG']['top_p']
-    topk = config['UDG']['top_k']
-    dpk = config['UDP']['delay_per_key']
-    wdmin = config['UDP']['word_delay_min']
-    wdmax = config['UDP']['word_delay_max']
+    temp = float(config['UDG']['temperature'])
+    topp = float(config['UDG']['top_p'])
+    topk = float(config['UDG']['top_k'])
+    dpk = float(config['UDP']['delay_per_key'])
+    wdmin = float(config['UDP']['word_delay_min'])
+    wdmax = float(config['UDP']['word_delay_max'])
     EXIT = config['HOTKEYS']['exit_hotkey']
     CALLUDG = config['HOTKEYS']['udg_hotkey']
     CALLUDP = config['HOTKEYS']['udp_hotkey']
