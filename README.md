@@ -1,6 +1,6 @@
 ## UDE Alpha v1.0 Oct 21st 2024 ##
 --------------------------------------
-#/HOW TO USE/#
+## HOW TO USE ##
 To setup, just download the zip under releases in github. Then, extract the contents into whatever folder you'd like.
 For Windows users, download UDEwin.zip. For Mac users, download UDEmac.zip. For Linux users, I will eventually add a zip with my own personal scripts, but they require additional setup and a knowledge of bash to use.
 
@@ -18,21 +18,18 @@ To update the hotkeys/config, you need to press the default keybind for it which
 
 I will eventually add visual icons to show what module is running, but for now that won't be the case.
 
-#/HOW TO USE/#
 --------------------------------------
-#/ABOUT/#
+## ABOUT ##
 UDE is a windows port for all my personal scripts that I use for nefarious actions (cheating). I will eventually post the bash versions of the scrips for people who use linux.
 
 UDG calls google's gemini api and uses your copied text as the prompt, then sends the result back to you clipboard completely undetected.
 
 UDP types out what is in your clipboard like a human would.
 
-#/ABOUT/#
 --------------------------------------
-#/DEBUGGING/#
+## DEBUGGING ##
 The logs folder will contain most information being sent across the program, so you can easily see the what's going on and what errors are popping up. 
 
 As long as you don't mess up the formatting of the cfg files or context json then you shouldn't ever need to check the logs.
 
-#/DEBUGGING/#
 --------------------------------------
