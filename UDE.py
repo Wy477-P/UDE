@@ -31,7 +31,7 @@ goutput = filfind(logdir,"goutput.txt")
 # EXIT FUNCTION #
 def closeude():
     keyboard.unhook_all_hotkeys()
-    sys.exit()
+    os._exit(0)
 # EXIT FUNCTION #
 
 
