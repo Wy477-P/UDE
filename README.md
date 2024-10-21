@@ -1,6 +1,4 @@
-##################################
 ## UDE Alpha v1.0 Oct 21st 2024 ##
-##################################
 --------------------------------------
 #/HOW TO USE/#
 To setup, just download the zip under releases in github. Then, extract the contents into whatever folder you'd like.
@@ -19,6 +17,7 @@ To start up the program, just run the executable file and it will stay open in t
 To update the hotkeys/config, you need to press the default keybind for it which is also in the config folder. You can change it if you wish though. You can also update the config/hotkeys by just closing out the program and opening it again.
 
 I will eventually add visual icons to show what module is running, but for now that won't be the case.
+
 #/HOW TO USE/#
 --------------------------------------
 #/ABOUT/#
@@ -27,11 +26,13 @@ UDE is a windows port for all my personal scripts that I use for nefarious actio
 UDG calls google's gemini api and uses your copied text as the prompt, then sends the result back to you clipboard completely undetected.
 
 UDP types out what is in your clipboard like a human would.
+
 #/ABOUT/#
 --------------------------------------
 #/DEBUGGING/#
 The logs folder will contain most information being sent across the program, so you can easily see the what's going on and what errors are popping up. 
 
 As long as you don't mess up the formatting of the cfg files or context json then you shouldn't ever need to check the logs.
+
 #/DEBUGGING/#
 --------------------------------------
