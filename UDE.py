@@ -5,10 +5,6 @@ import pyperclip
 import keyboard
 from functools import partial
 import requests
-import pyautogui
-import time
-import random
-import sys
 import ctypes
 import threading
 import subprocess
@@ -134,7 +130,7 @@ def UDP(delay_per_key, word_delay_min, word_delay_max):
     text = pyperclip.paste()
     text = text.lstrip()
     text = text.replace('’', '\'')
-    time.sleep(1.2)
+    threading.Event().wait(0.4)
     udp_thread = threading.Thread(target=run_udp, args=(text, delay_per_key, word_delay_min, word_delay_max))
     udp_thread.start()
 # UDP FUNCTION #
