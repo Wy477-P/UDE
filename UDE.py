@@ -9,6 +9,12 @@ import pyautogui
 import time
 import random
 import sys
+import ctypes
+import threading
+import subprocess
+
+current_version = "v1.1"
+repo_url = "https://api.github.com/repos/Wy477-P/UDE" 
 
 # DIRECTORIES #
 workdir = os.getcwd()
@@ -20,11 +26,44 @@ def filfind(fo, fi):
     return os.path.join(fo, fi)
 
 logdir = folfind("logs")
-
+dlldir = folfind("dlls")
 configini = filfind(workdir,"config.ini")
 gcontextjson = filfind(logdir,"gcontext.json")
 goutput = filfind(logdir,"goutput.txt")
+udpdll = filfind(dlldir, "UDP.dll")
+autoupdate = filfind(workdir, "autoupdate.py")
 # DIRECTORIES #
+
+
+
+# AUTOUPDATE #
+def check_for_updates():
+    
+    response = requests.get(f"{repo_url}/releases/latest")
+    response.raise_for_status()
+    latest_release = response.json()
+    latest_version = latest_release['tag_name']
+
+    
+    if current_version != latest_version:
+        subprocess.Popen(["python", autoupdate])
+        os._exit(0)
+
+check_for_updates()
+# AUTOUPDATE #
+
+
+
+# UDPDLL SETUP #
+udp_dll = ctypes.CDLL(udpdll)
+udp_dll.start_udp.argtypes = []
+udp_dll.stop_udp.argtypes = []
+udp_dll.udp.argtypes = [ctypes.c_char_p, ctypes.c_float, ctypes.c_float, ctypes.c_float]
+udp_thread = None
+def run_udp(text, delay_per_key, word_delay_min, word_delay_max):
+    udp_dll.start_udp()
+    udp_dll.udp(text.encode('utf-8'), delay_per_key, word_delay_min, word_delay_max)
+# UDPDLL SETUP #
 
 
 
@@ -90,41 +129,25 @@ def UDG(key, inst, temper, toppp, topkk):
 
 
 # UDP FUNCTION #
-running = True
 def UDP(delay_per_key, word_delay_min, word_delay_max):
-    global running
-    running = True
+    global udp_thread
     text = pyperclip.paste()
-    text = text.lstrip()  
-    
-    time.sleep(0.1)
-    
-    for char in text:
-        if not running:
-            break
-        if char == '’':
-            pyautogui.typewrite("'")
-        else:
-            if char.isupper() or char in [':', '"', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+', '{', '}', '|', '<', '>', '?', '~']:
-                pyautogui.keyDown('shift')
-                pyautogui.typewrite(char)
-                pyautogui.keyUp('shift')
-            else:
-                pyautogui.typewrite(char)
-
-        time.sleep(delay_per_key)
-        
-        if char == ' ':
-            word_delay = random.uniform(word_delay_min, word_delay_max)
-            time.sleep(word_delay)
+    text = text.lstrip()
+    text = text.replace('’', '\'')
+    time.sleep(1.2)
+    udp_thread = threading.Thread(target=run_udp, args=(text, delay_per_key, word_delay_min, word_delay_max))
+    udp_thread.start()
 # UDP FUNCTION #
 
 
 
 # UDP KILLSWITCH #
 def kill_switch():
-    global running
-    running = False
+    global udp_thread
+    if udp_thread is not None and udp_thread.is_alive():
+        udp_dll.stop_udp()
+        udp_thread.join()
+        udp_thread = None
 # UDP KILLSWITCH #
 
 
