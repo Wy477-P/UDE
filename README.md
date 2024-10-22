@@ -4,7 +4,7 @@ Update v1.1 - Increased speed of UDP by converting it to a C DLL. The deprecated
 
 ## HOW TO USE ##
 To setup, just download the zip under releases in github. Then, extract the contents into whatever folder you'd like.
-For Windows users, download UDEwin.zip. For Mac users, download UDEmac.zip. For Linux users, I will eventually add a zip with my own personal scripts, but they require additional setup and a knowledge of bash to use.
+For Linux users, I will eventually add a zip with my own personal scripts, but they require additional setup and a knowledge of bash to use. 
 
 All you really gotta do to use things in this program is set up the config file to your liking. Try not to mess up the formatting since it may cause unexpected errors.
 
