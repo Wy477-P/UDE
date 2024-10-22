@@ -1,10 +1,10 @@
-## UDE ALPHA v1.1 Oct 22nd 2024 ##
+## UDE v1.2 Oct 22nd 2024 ##
 
 Update v1.1 - Increased speed of UDP by converting it to a C DLL. The deprecated python function will be available in the "Deprecated code" folder, and I will also make a mac compatible version of the dll later on. Also added automatic updates.
+Update v1.2 - Increase responsiveness of UDP and decreased executable size.
 
 ## HOW TO USE ##
 To setup, just download the zip under releases in github. Then, extract the contents into whatever folder you'd like.
-For Linux users, I will eventually add a zip with my own personal scripts, but they require additional setup and a knowledge of bash to use. 
 
 All you really gotta do to use things in this program is set up the config file to your liking. Try not to mess up the formatting since it may cause unexpected errors.
 
