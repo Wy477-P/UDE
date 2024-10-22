@@ -1,9 +1,10 @@
-## UDE Alpha v1.0 Oct 21st 2024 ##
+## UDE ALPHA v1.1 Oct 22nd 2024 ##
+
+Update v1.1 - Increased speed of UDP by converting it to a C DLL. The deprecated python function will be available in the "Deprecated code" folder, and I will also make a mac compatible version of the dll later on. Also added automatic updates.
 
 ## HOW TO USE ##
 To setup, just download the zip under releases in github. Then, extract the contents into whatever folder you'd like.
-I will eventually add support for Mac systems, but it might be later on since it would mean redesigning the entire hotkey system.
-For Linux users, I will also eventually add a folder containing the original scrips this project is based on. It will take a bit of bash knowledge and ability to add hotkeys to use them though.
+For Windows users, download UDEwin.zip. For Mac users, download UDEmac.zip. For Linux users, I will eventually add a zip with my own personal scripts, but they require additional setup and a knowledge of bash to use.
 
 All you really gotta do to use things in this program is set up the config file to your liking. Try not to mess up the formatting since it may cause unexpected errors.
 
@@ -17,12 +18,16 @@ To start up the program, just run the executable file and it will stay open in t
 
 To update the hotkeys/config, you need to press the default keybind for it which is also in the config folder. You can change it if you wish though. You can also update the config/hotkeys by just closing out the program and opening it again.
 
+I will eventually add visual icons to show what module is running, but for now that won't be the case.
+
+
 ## ABOUT ##
-UDE is a windows port for all my personal scripts that I use for nefarious actions (cheating).
+UDE is a windows port for all my personal scripts that I use for nefarious actions (cheating). I will eventually post the bash versions of the scrips for people who use linux.
 
 UDG calls google's gemini api and uses your copied text as the prompt, then sends the result back to you clipboard completely undetected.
 
 UDP types out what is in your clipboard like a human would.
+
 
 ## DEBUGGING ##
 The logs folder will contain most information being sent across the program, so you can easily see the what's going on and what errors are popping up. 
