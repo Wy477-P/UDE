@@ -1,0 +1,29 @@
+# UDP FUNCTION #
+running = True
+def UDP(delay_per_key, word_delay_min, word_delay_max):
+    global running
+    running = True
+    text = pyperclip.paste()
+    text = text.lstrip()  
+    
+    time.sleep(0.1)
+    
+    for char in text:
+        if not running:
+            break
+        if char == '’':
+            pyautogui.typewrite("'")
+        else:
+            if char.isupper() or char in [':', '"', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+', '{', '}', '|', '<', '>', '?', '~']:
+                pyautogui.keyDown('shift')
+                pyautogui.typewrite(char)
+                pyautogui.keyUp('shift')
+            else:
+                pyautogui.typewrite(char)
+
+        time.sleep(delay_per_key)
+        
+        if char == ' ':
+            word_delay = random.uniform(word_delay_min, word_delay_max)
+            time.sleep(word_delay)
+# UDP FUNCTION #
