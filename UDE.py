@@ -9,7 +9,7 @@ import ctypes
 import threading
 import subprocess
 
-current_version = "v1.1"
+current_version = "v1.2"
 repo_url = "https://api.github.com/repos/Wy477-P/UDE" 
 
 # DIRECTORIES #
