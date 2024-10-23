@@ -1,0 +1,48 @@
+#!/bin/bash
+
+D="REPLACE WITH PATH TO SCRIPT FOLDER"
+C="$D/con.json"
+L="$D/log.txt"
+
+if [ ! -f "$C" ]; then
+  echo "[]" > "$C"
+fi
+CON=$(< "$C")
+
+ac() {
+e=$(jq -n --arg t "$1" --arg r "$2" '{role: $r, parts: [{text: $t}]}')
+CON=$(echo "$CON" | jq --argjson n "$e" '. + [$n]')
+echo "$CON" > "$C"
+}
+
+ac "$(xclip -o -selection clipboard | jq -R .)" "user"
+
+SN=$(jq -n --argjson jcon "$CON" '{
+  system_instruction: {
+    parts: [{
+      "text": "Keep responses in plain text, and avoid formatting such as bullet points and new lines unless told otherwise. Never use emojis. Follow the user instructions as closely as possible, but if not told how to respond, default to short, quick, and condensed responses that get a point across as quickly as possible."
+    }]
+  },
+  safetySettings: [
+    {category: "HARM_CATEGORY_HARASSMENT", threshold: "BLOCK_NONE"},
+    {category: "HARM_CATEGORY_HATE_SPEECH", threshold: "BLOCK_NONE"},
+    {category: "HARM_CATEGORY_SEXUALLY_EXPLICIT", threshold: "BLOCK_NONE"},
+    {category: "HARM_CATEGORY_DANGEROUS_CONTENT", threshold: "BLOCK_NONE"}
+  ],
+  generationConfig: {
+    temperature: 0.0,
+    topP: 1,
+    topK: 1
+  },
+  contents: $jcon
+}')
+
+RP=$(curl -s "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-8b:generateContent?key=REPLACE WITH KEY" \
+-H 'Content-Type: application/json' \
+-X POST \
+-d "$SN")
+
+OP=$(jq -r '.candidates[0].content.parts[0].text' <<< "$RP")
+echo "$OP" | xclip -selection clipboard
+ac "$(echo "$OP" | jq -R .)" "model"
+echo "$RP" > "$L"
