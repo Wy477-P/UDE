@@ -23,6 +23,7 @@ I will eventually add visual icons to show what module is running, but for now t
 
 ## ABOUT ##
 UDE is a windows port for all my personal scripts that I use for nefarious actions (cheating). The original bash scripts can be found in the original scripts directory for linux users.
+I eventually plan to make it compatible with both mac and windows computers, but I will likely avoid making it compatible with linux since it is just extra effort for something I have already done. Also, if you're autistic enough to use linux, I'm 100% sure you're smart enough to understand how to use the original scripts since they are so simple.
 
 UDG calls google's gemini api and uses your copied text as the prompt, then sends the result back to you clipboard completely undetected.
 
