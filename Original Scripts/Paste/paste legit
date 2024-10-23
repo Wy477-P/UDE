@@ -1,0 +1,77 @@
+#!/bin/bash
+
+
+killswitch() {
+    pgrep -x "killswitch" > /dev/null
+    return $?  # 0 if the process is found, 1 if not
+}
+
+# Function to cancel all key inputs
+cancel_all_inputs() {
+    echo "Cancelling all key inputs."
+    xdotool keyup Shift
+    xdotool keyup Ctrl
+    xdotool keyup Alt
+    xdotool keyup Meta
+    # Optionally, release any other keys you might want
+}
+
+# Get the clipboard content
+clipboard_content=$(xclip -o -selection clipboard)
+
+# Function to type each character with a delay
+type_with_delay() {
+    local text="$1"
+    local delay_per_key=0.02  
+    local word_delay_min=0.03 
+    local word_delay_max=0.08
+
+    local length=${#text}
+
+    # Ensure there are no empty spaces at the beginning
+    text="${text#"${text%%[![:space:]]*}"}"  # Trim leading whitespace
+
+    # Small initial delay before starting
+    sleep 0.1  # 100 ms delay
+
+    for (( i=0; i<length; i++ )); do
+        # Check if the killswitch is running; if so, exit the loop
+        if killswitch; then
+            cancel_all_inputs
+            break
+        fi
+
+        # Get the current character
+        char="${text:i:1}"
+
+        # Handle specific characters
+        case "$char" in
+            "’")
+                xdotool type --clearmodifiers "'"
+                ;;
+            *)
+                # Determine if the character requires a shift press
+                if [[ "$char" =~ [A-Z:\;\"\'\!\@\#\$\%\^\&\*\(\)\_\+\{\}\|\<\>\?] ]]; then
+                    xdotool key --clearmodifiers Shift
+                    xdotool type --clearmodifiers "$char"
+                    sleep $delay_per_key
+                    xdotool key --clearmodifiers Shift  # Release the shift key
+                else
+                    xdotool type --clearmodifiers "$char"
+                fi
+                ;;
+        esac
+        
+        sleep $delay_per_key
+        
+        # Introduce a word delay after typing a space
+        if [[ "$char" == " " ]]; then
+            sleep $(awk -v min=$word_delay_min -v max=$word_delay_max 'BEGIN{srand(); print min+rand()*(max-min)}')
+        fi
+    done
+}
+
+trap cancel_all_inputs EXIT
+
+type_with_delay "$clipboard_content"
+
