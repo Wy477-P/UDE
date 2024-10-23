@@ -1,0 +1,5 @@
+#!/bin/bash
+
+eval $(/usr/bin/xdotool getmouselocation --shell)
+echo "$X $Y" > REPLACE WITH YOUR PATH TO XYA.TXT
+

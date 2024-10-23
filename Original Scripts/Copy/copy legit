@@ -1,0 +1,23 @@
+#!/bin/bash
+
+dp="REPLACE WITH PATH TO YOUR FOLDER CONTAINING THIS SCRIPT"
+XYA="$dp/XYA.txt"
+XYB="$dp/XYB.txt"
+
+eval $(/usr/bin/xdotool getmouselocation --shell)
+echo "$X $Y" > "$XYB"
+
+
+read -r ax ay < "$XYA"
+read -r bx by < "$XYB"
+wi=$((bx - ax))
+he=$((by - ay))
+ss="$dp/screenshot.png"
+of="$dp/output"
+scrot -a "$ax,$ay,$wi,$he" -o "$ss"
+convert "$ss" -colorspace Gray "$ss"
+tesseract "$ss" "$of" --oem 1 --psm 6
+xclip -selection clipboard < "$of.txt"
+ 
+sleep 0.2
+rm "$ss" "$XYA" "$XYB" "$of.txt"
