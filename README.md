@@ -4,7 +4,7 @@ Update v1.1 - Increased speed of UDP by converting it to a C DLL. The deprecated
 Update v1.2 - Increase responsiveness of UDP and decreased executable size.
 
 ## HOW TO USE ##
-To setup, just download the zip under releases in github. Then, extract the contents into whatever folder you'd like.
+To setup, just download the zip under releases in github. Then, extract the contents into whatever folder you'd like. For linux users, download the scripts from "Original scripts" in the main code.
 
 All you really gotta do to use things in this program is set up the config file to your liking. Try not to mess up the formatting since it may cause unexpected errors.
 
@@ -22,7 +22,7 @@ I will eventually add visual icons to show what module is running, but for now t
 
 
 ## ABOUT ##
-UDE is a windows port for all my personal scripts that I use for nefarious actions (cheating). I will eventually post the bash versions of the scrips for people who use linux.
+UDE is a windows port for all my personal scripts that I use for nefarious actions (cheating). The original bash scripts can be found in the original scripts directory for linux users.
 
 UDG calls google's gemini api and uses your copied text as the prompt, then sends the result back to you clipboard completely undetected.
 
