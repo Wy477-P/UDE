@@ -1,7 +1,10 @@
-## UDE v1.2 Oct 22nd 2024 ##
+## UDE v1.3 Oct 24th 2024 ##
 
 Update v1.1 - Increased speed of UDP by converting it to a C DLL. The deprecated python function will be available in the "Deprecated code" folder, and I will also make a mac compatible version of the dll later on. Also added automatic updates.
+
 Update v1.2 - Increase responsiveness of UDP and decreased executable size.
+
+Update v1.3 - Added a built in text-to-speech function with custom speech rate and volume, might make an option to use google's tts api later on. Updated default controls to be a bit more intuitive. Created a variable for the gemini model for future proofing.
 
 ## HOW TO USE ##
 To setup, just download the zip under releases in github. Then, extract the contents into whatever folder you'd like. For linux users, download the scripts from "Original scripts" in the main code.
@@ -34,5 +37,6 @@ UDP types out what is in your clipboard like a human would.
 The logs folder will contain most information being sent across the program, so you can easily see the what's going on and what errors are popping up. 
 
 As long as you don't mess up the formatting of the cfg files or context json then you shouldn't ever need to check the logs.
+
 
 
