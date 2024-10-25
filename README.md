@@ -1,4 +1,4 @@
-## UDE v1.3 Oct 24th 2024 ##
+## UDE v1.3 Oct 25th 2024 ##
 
 Update v1.1 - Increased speed of UDP by converting it to a C DLL. The deprecated python function will be available in the "Deprecated code" folder, and I will also make a mac compatible version of the dll later on. Also added automatic updates.
 
