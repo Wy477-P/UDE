@@ -162,7 +162,9 @@ namespace ApiCallerLibrary
                 }
             }
             ac(OP, gcontextjson, "model");
-            return OP;
+            CopyToClipboard(OP);
+            string done = "Done!";
+            return done;
         }
         // Update Context (AC)
         private static void ac(string userInput, string gcontextjson, string role)
